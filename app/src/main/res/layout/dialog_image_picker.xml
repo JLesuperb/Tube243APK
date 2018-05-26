@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/fromGallery"
+        android:clickable="true"
+        android:layout_weight="0.5"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:focusable="true">
+
+        <android.support.v7.widget.AppCompatImageView
+            app:srcCompat="@drawable/ic_action_gallery"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+        <android.support.v7.widget.AppCompatTextView
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:shadowColor="#000"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gallery"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/fromCamera"
+        android:clickable="true"
+        android:layout_weight="0.5"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:focusable="true">
+        <android.support.v7.widget.AppCompatImageView
+            app:srcCompat="@drawable/ic_action_camera"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+        <android.support.v7.widget.AppCompatTextView
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:shadowColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/camera"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</android.support.v7.widget.LinearLayoutCompat>

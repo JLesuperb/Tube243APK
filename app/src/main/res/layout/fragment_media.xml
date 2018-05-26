@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:titleTextAppearance="@style/ToolbarTextAppearance.Title"
+            app:subtitleTextAppearance="@style/ToolbarTextAppearance.Subtitle"
+            style="@style/MyToolbar"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ccc">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@drawable/ic_action_download" />
+
+        <com.tube243.tube243.widgets.CircleImageView
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:id="@+id/tubeImageView"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_album_cover" />
+
+        <LinearLayout
+            android:background="#fff"
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="0dp"
+            android:layout_alignParentBottom="true"
+            android:padding="8dp"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/currentTimeTxt"
+                android:text="@string/init_time"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextGrey"/>
+
+            <ImageButton
+                android:id="@+id/backwardBtn"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_backward"
+                android:background="@null"
+                tools:ignore="ContentDescription" />
+            <ImageButton
+                android:id="@+id/playBtn"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/round_play_circle_outline_black_48"
+                android:background="@null"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/forwardBtn"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_forward"
+                android:background="@null"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/fullTimeTxt"
+                android:text="@string/init_time"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:textColor="@color/colorTextGrey"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/loadingBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_marginBottom="-4dp"
+            android:layout_width="match_parent"
+            android:layout_height="6dip"
+            android:minHeight="6dip"
+            android:maxHeight="6dip"
+            android:indeterminate="true"
+            android:max="100"
+            android:layout_above="@+id/ll_bottom"/>
+
+        <SeekBar
+            android:visibility="gone"
+            android:padding="0dp"
+            android:progress="50"
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="-14dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:paddingStart="0.5dp"
+            android:paddingEnd="0.5dp"
+            android:layout_above="@+id/ll_bottom" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

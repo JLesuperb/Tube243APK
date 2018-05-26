@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <!--<item
+            android:id="@+id/nav_menu_index"
+            android:icon="@drawable/ic_menu_home"
+            android:title="Acceuil" />-->
+        <item
+            android:id="@+id/nav_menu_profile"
+            android:icon="@drawable/ic_menu_profile"
+            android:title="@string/profile" />
+        <!--<item
+            android:id="@+id/nav_menu_tubes"
+            android:icon="@drawable/ic_menu_tubes"
+            android:title="Tops Tubes" />-->
+        <!--<item
+            android:id="@+id/nav_menu_subscribes"
+            android:icon="@drawable/ic_action_like"
+            android:title="Abonnements" />-->
+        <item
+            android:id="@+id/nav_menu_notifications"
+            android:icon="@drawable/ic_action_clock"
+            android:title="@string/notifications" />
+        <item
+            android:id="@+id/nav_menu_desktop"
+            android:icon="@drawable/ic_menu_desktop"
+            android:title="@string/tv" />
+    </group>
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_about"
+            android:title="@string/about" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_menu_contact"
+            android:title="@string/contact" />
+    </group>
+</menu>

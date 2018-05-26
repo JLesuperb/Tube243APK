@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardUseCompatPadding="true"
+    android:clickable="true"
+    android:id="@+id/artistCardView"
+    card_view:cardCornerRadius="8dp"
+    android:alpha="0.9"
+    android:layout_marginBottom="16dp">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Product Image -->
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/artistImageView"
+            android:src="@drawable/ic_artist_cover"
+            android:layout_width="190dp"
+            android:layout_height="140dp"
+            android:scaleType="fitCenter"/>
+
+        <!-- Product Title -->
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/artistTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"/>
+
+       <android.support.v7.widget.LinearLayoutCompat
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <android.support.v7.widget.AppCompatImageView
+               android:src="@drawable/ic_action_disc"
+               android:layout_width="25dp"
+               android:layout_height="25dp"
+               android:scaleType="fitCenter"/>
+           <android.support.v7.widget.AppCompatTextView
+               android:id="@+id/tubeCounter"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="#000"/>
+       </android.support.v7.widget.LinearLayoutCompat>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

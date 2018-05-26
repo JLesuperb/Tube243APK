@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="8dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Selectionner le mode d'impression"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Imprimante Interne"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnBth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Imprimante Bluetooth"/>
+
+</android.support.v7.widget.LinearLayoutCompat>

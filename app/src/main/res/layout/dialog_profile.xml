@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp">
+        <android.support.v7.widget.LinearLayoutCompat
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="#e25e5e"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/image_profile"
+                android:layout_width="200dp"
+                android:layout_height="200dp" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </RelativeLayout>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="18dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:hint="@string/first_name"
+            android:textColor="#000"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:clickable="false"
+                android:inputType="none"
+                android:id="@+id/first_name_edit"
+                android:lines="1"
+                android:enabled="false"
+                android:textColor="#000"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:hint="@string/last_name"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:clickable="false"
+                android:inputType="none"
+                android:enabled="false"
+                android:id="@+id/last_name_edit"
+                android:layout_width="match_parent"
+                android:lines="1"
+                android:maxLines="1"
+                android:textColor="#000"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.design.widget.TextInputLayout
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_width="match_parent"
+        android:hint="Téléphone"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:clickable="false"
+            android:inputType="none"
+            android:enabled="false"
+            android:id="@+id/phone_number_edit"
+            android:layout_width="match_parent"
+            android:lines="1"
+            android:maxLines="1"
+            android:textColor="#000"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/editBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dismiss"/>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</android.support.v7.widget.LinearLayoutCompat>

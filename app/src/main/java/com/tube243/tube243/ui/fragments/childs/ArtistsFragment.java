@@ -23,9 +23,9 @@ import com.tube243.tube243.core.DatabaseHelper;
 import com.tube243.tube243.data.Params;
 import com.tube243.tube243.entities.Artist;
 import com.tube243.tube243.processes.LocalTextTask;
+import com.tube243.tube243.transitions.DetailsTransition;
 import com.tube243.tube243.ui.fragments.ArtistFragment;
 import com.tube243.tube243.ui.fragments.BaseFragment;
-import com.tube243.tube243.ui.transitions.ZoomTransition;
 import com.tube243.tube243.utils.Utility;
 
 import java.io.ByteArrayOutputStream;
@@ -206,16 +206,14 @@ public class ArtistsFragment extends BaseFragment
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             {
-                artistFragment.setSharedElementEnterTransition(new ZoomTransition());
+                artistFragment.setSharedElementEnterTransition(new DetailsTransition());
                 artistFragment.setEnterTransition(new Fade());
                 setExitTransition(new Fade());
-                artistFragment.setSharedElementReturnTransition(new ZoomTransition());
+                artistFragment.setSharedElementReturnTransition(new DetailsTransition());
             }
 
             fragmentManager
                     .beginTransaction()
-                    .setCustomAnimations(R.animator.fade_in,R.animator.fade_out,
-                            R.animator.fade_in,R.animator.fade_out)
                     .addSharedElement(holder.artistImageView, "artistImage")
                     .hide(fragment)
                     .setReorderingAllowed(true)

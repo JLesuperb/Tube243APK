@@ -20,6 +20,7 @@ import com.tube243.tube243.core.DatabaseHelper;
 import com.tube243.tube243.data.Params;
 import com.tube243.tube243.entities.Tube;
 import com.tube243.tube243.processes.LocalTextTask;
+import com.tube243.tube243.transitions.DetailsTransition;
 import com.tube243.tube243.ui.fragments.BaseFragment;
 import com.tube243.tube243.ui.fragments.MediaFragment;
 import com.tube243.tube243.ui.transitions.ZoomTransition;
@@ -230,16 +231,14 @@ public class TubesFragment extends BaseFragment
             MediaFragment mediaFragment = MediaFragment.getInstance();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             {
-                mediaFragment.setSharedElementEnterTransition(new ZoomTransition());
+                mediaFragment.setSharedElementEnterTransition(new DetailsTransition());
                 mediaFragment.setEnterTransition(new Fade());
                 setExitTransition(new Fade());
-                mediaFragment.setSharedElementReturnTransition(new ZoomTransition());
+                mediaFragment.setSharedElementReturnTransition(new DetailsTransition());
             }
             mediaFragment.setTube(tube);
             fragmentManager
                     .beginTransaction()
-                    .setCustomAnimations(R.animator.fade_in,R.animator.fade_out,
-                            R.animator.fade_in,R.animator.fade_out)
                     .addSharedElement(holder.tubeImageView, "tubeImage")
                     .setReorderingAllowed(true)
                     .hide(fragment)

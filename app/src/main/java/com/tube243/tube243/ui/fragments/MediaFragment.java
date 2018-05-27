@@ -419,8 +419,7 @@ public class MediaFragment extends BaseFragment implements MediaPlayer.OnComplet
         if(getView()!=null)
         {
             ProgressBar loadingBar = getView().findViewById(R.id.loadingBar);
-            loadingBar.setIndeterminate(false);
-            //loadingBar.setVisibility(View.GONE);
+            loadingBar.setVisibility(View.GONE);
             SeekBar seekBar = getView().findViewById(R.id.seekBar);
             seekBar.setVisibility(View.VISIBLE);
         }

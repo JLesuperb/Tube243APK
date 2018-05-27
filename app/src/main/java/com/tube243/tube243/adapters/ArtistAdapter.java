@@ -75,6 +75,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         });
         builder.build().load(onlinePath)
                 .error(R.drawable.ic_artist_cover)
+                .tag(context)
                 .placeholder(R.drawable.ic_artist_cover)
                 .into(holder.artistImageView);
         /*Picasso.with(context)

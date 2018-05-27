@@ -88,14 +88,13 @@ public class ArtistsFragment extends BaseFragment
         artistAdapter.setContext(getActivity().getApplicationContext());
         recyclerView.setAdapter(artistAdapter);
         artistAdapter.setOnArtistClickListener(this);
-        //loadDataFromServer();
 
         SwipeRefreshLayout swipeContainer = view.findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(this);
-        swipeContainer.setColorSchemeResources(R.color.colorPrimary,
+        /*swipeContainer.setColorSchemeResources(R.color.colorPrimary,
                 android.R.color.holo_green_dark,
                 android.R.color.holo_orange_dark,
-                android.R.color.holo_blue_dark);
+                android.R.color.holo_blue_dark);*/
 
         db = new DatabaseHelper(getContext());
         if(db.getArtistsCount()<=0)
@@ -235,6 +234,7 @@ public class ArtistsFragment extends BaseFragment
 
     public void applyFilter(String filterString)
     {
-
+        artistAdapter.setFilterPattern(filterString);
+        artistAdapter.notifyDataSetChanged();
     }
 }

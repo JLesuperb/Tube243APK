@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.transition.Fade;
-import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +35,7 @@ import java.util.Map;
  */
 
 public class TubesFragment extends BaseFragment
-        implements TubeAdapter.OnTubeClickListener
-{
+        implements TubeAdapter.OnTubeClickListener, SwipeRefreshLayout.OnRefreshListener {
     private List<Tube> tubeList;
     private TubeAdapter tubeAdapter;
     //private LinearLayout linearProgress;
@@ -55,10 +54,6 @@ public class TubesFragment extends BaseFragment
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null)
-        {
-            //mContent = getSupportFragmentManager().getFragment(savedInstanceState, "myFragmentName");
-        }
     }
 
     @Override
@@ -81,8 +76,6 @@ public class TubesFragment extends BaseFragment
         super.onViewCreated(view, savedInstanceState);
 
         tubeList = new LinkedList<>();
-        //linearProgress = view.findViewById(R.id.linearProgress);
-        //linearProgress.setVisibility(View.GONE);
         AutofitRecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(),getGridRow()));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -96,11 +89,13 @@ public class TubesFragment extends BaseFragment
                 }
             });
         }
-        //recyclerView.setLayoutManager(new GridAutofitLayoutManager(getActivity().getApplicationContext(),300));
+
         tubeAdapter = new TubeAdapter(tubeList);
         recyclerView.setAdapter(tubeAdapter);
         tubeAdapter.setOnTubeClickListener(this);
-        //loadDataFromServer();
+
+        SwipeRefreshLayout swipeContainer = view.findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(this);
 
         db = new DatabaseHelper(getContext());
 
@@ -123,7 +118,6 @@ public class TubesFragment extends BaseFragment
 
     private void loadDataFromServer()
     {
-        //linearProgress.setVisibility(View.VISIBLE);
         LocalTextTask textTask = new LocalTextTask();
         textTask.setUrlString(Params.SERVER_HOST+"?controller=utilities&method=tubes&from-index=15");
         textTask.setListener(new LocalTextTask.ResultListener()
@@ -131,20 +125,18 @@ public class TubesFragment extends BaseFragment
             @Override
             public void onResult(Map<String, Object> result)
             {
-                //linearProgress.setVisibility(View.GONE);
                 try
                 {
                     if(result.containsKey("isDone") && (Boolean) result.get("isDone"))
                     {
                         List<Map<String,Object>> maps = (List<Map<String,Object>>) result.get("data");
+                        db.clearTubes();
                         for(int i=0;i<maps.size();i++)
                         {
                             Map<String,Object> map = maps.get(i);
                             Tube tube = new Tube(Integer.parseInt(map.get("id").toString()),map.get("name").toString(),map.get("folder").toString(),
                                     map.get("size").toString(), Integer.parseInt(map.get("quantity").toString()));
                             db.insert(tube);
-                            //tubeList.add(tube);
-                            /*tubesIndex++;*/
                         }
                         if(db.getTubesCount()>0)
                         {
@@ -212,6 +204,11 @@ public class TubesFragment extends BaseFragment
     {
         tubeList.addAll(db.getAllTubes());
         tubeAdapter.notifyDataSetChanged();
+        if(getView()!=null)
+        {
+            SwipeRefreshLayout swipeContainer = getView().findViewById(R.id.swipeContainer);
+            swipeContainer.setRefreshing(false);
+        }
     }
 
 
@@ -251,6 +248,12 @@ public class TubesFragment extends BaseFragment
                     .commit();
         }
 
+    }
+
+    @Override
+    public void onRefresh()
+    {
+        loadDataFromServer();
     }
 
     public void applyFilter(String filterString)

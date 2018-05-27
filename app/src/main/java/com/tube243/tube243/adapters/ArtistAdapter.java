@@ -29,6 +29,7 @@ import java.util.List;
 public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder>
 {
     private Context context;
+    private String filterPattern;
 
     public void setOnArtistClickListener(OnArtistClickListener onArtistClickListener)
     {
@@ -38,6 +39,11 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
     public void setContext(Context context)
     {
         this.context = context;
+    }
+
+    public void setFilterPattern(String filterPattern)
+    {
+        this.filterPattern = filterPattern;
     }
 
     public interface OnArtistClickListener

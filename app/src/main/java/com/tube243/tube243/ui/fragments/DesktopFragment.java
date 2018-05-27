@@ -1,7 +1,9 @@
 package com.tube243.tube243.ui.fragments;
 
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -62,9 +64,10 @@ public class DesktopFragment extends BaseFragment
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         toolbar.setTitle("Desktop");
         ((HomeActivity) getActivity()).setSupportActionBar(toolbar);
-        if (((HomeActivity) getActivity()).getSupportActionBar() != null)
+        ActionBar actionBar = ((HomeActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null)
         {
-            ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
         else if(getActivity().getActionBar()!=null)
         {

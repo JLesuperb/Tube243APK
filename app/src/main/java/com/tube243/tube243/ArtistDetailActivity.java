@@ -112,7 +112,8 @@ public class ArtistDetailActivity extends AppCompatActivity implements View.OnCl
         likeBtn.setOnClickListener(this);
     }
 
-    private void loadData(final Long artistId) {
+    private void loadData(final Long artistId)
+    {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);

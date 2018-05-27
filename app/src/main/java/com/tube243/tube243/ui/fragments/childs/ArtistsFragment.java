@@ -212,7 +212,6 @@ public class ArtistsFragment extends BaseFragment
                 artistFragment.setSharedElementReturnTransition(new ZoomTransition());
             }
 
-            artistFragment.setArtist(artist);
             fragmentManager
                     .beginTransaction()
                     .setCustomAnimations(R.animator.fade_in,R.animator.fade_out,

@@ -1,8 +1,6 @@
 package com.tube243.tube243.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.AppCompatImageView;
@@ -13,13 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.tube243.tube243.R;
-import com.tube243.tube243.data.Params;
 import com.tube243.tube243.entities.Artist;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,7 +26,6 @@ import java.util.List;
 public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder>
 {
     private Context context;
-    private String filterPattern;
 
     public void setOnArtistClickListener(OnArtistClickListener onArtistClickListener)
     {
@@ -43,7 +39,32 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
 
     public void setFilterPattern(String filterPattern)
     {
-        this.filterPattern = filterPattern;
+        if(!filterPattern.isEmpty())
+        {
+            if(artistListFiltred.size()!=0)
+            {
+                artistListTotal = artistList;
+            }
+            artistListFiltred.clear();
+            for (Artist artist:artistList)
+            {
+                if(artist.getName().contains(filterPattern))
+                {
+                    artistListFiltred.add(artist);
+                }
+            }
+            artistList = artistListFiltred;
+            notifyDataSetChanged();
+        }
+        else
+        {
+            if(artistListTotal.size()>0)
+            {
+                artistList = artistListTotal;
+                artistListTotal.clear();
+                notifyDataSetChanged();
+            }
+        }
     }
 
     public interface OnArtistClickListener
@@ -51,11 +72,16 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         void onClickArtist(ViewHolder holder, Artist artist);
     }
 
-    private final List<Artist> artistList;
+    private List<Artist> artistList;
+    private List<Artist> artistListFiltred;
+    private List<Artist> artistListTotal;
     private OnArtistClickListener onArtistClickListener;
 
-    public ArtistAdapter(List<Artist> artistList){
+    public ArtistAdapter(List<Artist> artistList)
+    {
         this.artistList = artistList;
+        artistListFiltred = new ArrayList<>();
+        artistListTotal = new ArrayList<>();
     }
     @Override
     public ArtistAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,10 +94,9 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         final Artist artist = artistList.get(position);
         holder.artistTitle.setText(artist.getName());
         holder.tubeCounter.setText(artist.getCounter()+"");
-        final AppCompatImageView imageView = holder.artistImageView;
         ViewCompat.setTransitionName(holder.artistImageView, "artistImage"+position);
-        String onlinePath = Params.SERVER+"/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage();
-        onlinePath = "http://www.tube243.com/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage();
+        //String onlinePath = Params.SERVER+"/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage();
+        String onlinePath = "http://www.tube243.com/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage();
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.listener(new Picasso.Listener()
         {
@@ -86,16 +111,9 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
                 .tag(context)
                 .placeholder(R.drawable.ic_artist_cover)
                 .into(holder.artistImageView);
-        /*Picasso.with(context)
-                .load(onlinePath)
-                .error(R.drawable.ic_artist_cover)
-                .placeholder(R.drawable.ic_artist_cover)
-                .into(holder.artistImageView);*/
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BitmapDrawable bitmapDrawable = (BitmapDrawable)imageView.getDrawable();
-                Bitmap bitmap = bitmapDrawable.getBitmap();
                 onArtistClickListener.onClickArtist(holder,artist);
             }
         });

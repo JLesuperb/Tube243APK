@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.tube243.tube243.R;
 import com.tube243.tube243.entities.Tube;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,15 +18,34 @@ import java.util.List;
 
 public class ArtistTubeAdapter extends RecyclerView.Adapter<ArtistTubeAdapter.ViewHolder>
 {
-    private final List<Tube> tubeList;
+    private List<Tube> tubeList;
     private OnTubeListener onTubeListener;
 
-    public ArtistTubeAdapter(List<Tube> tubeList){
+    public ArtistTubeAdapter(List<Tube> tubeList)
+    {
         this.tubeList = tubeList;
     }
 
-    public void setOnTubeListener(OnTubeListener onTubeListener) {
+    public ArtistTubeAdapter()
+    {
+        this.tubeList = new ArrayList<>();
+    }
+
+    public void setOnTubeListener(OnTubeListener onTubeListener)
+    {
         this.onTubeListener = onTubeListener;
+    }
+
+    public void addAll(List<Tube> tubeList)
+    {
+        this.tubeList.addAll(tubeList);
+        notifyDataSetChanged();
+    }
+
+    public void clear()
+    {
+        this.tubeList.clear();
+        notifyDataSetChanged();
     }
 
     public interface OnTubeListener
@@ -34,7 +54,8 @@ public class ArtistTubeAdapter extends RecyclerView.Adapter<ArtistTubeAdapter.Vi
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.song_item,parent,false);
         if(view.getLayoutParams().width==RecyclerView.LayoutParams.MATCH_PARENT)
             view.getLayoutParams().width = parent.getWidth();
@@ -58,11 +79,13 @@ public class ArtistTubeAdapter extends RecyclerView.Adapter<ArtistTubeAdapter.Vi
         return tubeList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder
+    {
         AppCompatTextView songTitle;
-        ViewHolder(View itemView) {
+        ViewHolder(View itemView)
+        {
             super(itemView);
-            songTitle = (AppCompatTextView)itemView.findViewById(R.id.songTitle);
+            songTitle = itemView.findViewById(R.id.songTitle);
         }
     }
 }

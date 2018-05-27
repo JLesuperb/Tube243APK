@@ -9,6 +9,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import com.tube243.tube243.R;
 
@@ -88,5 +89,16 @@ public class ProfileDialog extends BaseDialog implements View.OnClickListener
     public int getTheme()
     {
         return super.getTheme();
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+        Window window = getDialog().getWindow();
+        if(window!=null)
+        {
+            window.getAttributes().windowAnimations = R.style.DialogAnimation;
+        }
     }
 }

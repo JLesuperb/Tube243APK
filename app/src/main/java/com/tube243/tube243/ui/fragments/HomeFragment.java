@@ -15,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Explode;
 import android.view.KeyEvent;
@@ -45,8 +46,7 @@ import java.io.IOException;
 
 public class HomeFragment extends BaseFragment
         implements NavigationView.OnNavigationItemSelectedListener, View.OnKeyListener,
-        View.OnClickListener, ProfileDialog.ProfileEditor
-{
+        View.OnClickListener, ProfileDialog.ProfileEditor, SearchView.OnQueryTextListener {
     private static HomeFragment _instance;
 
     private ArtistsFragment artistsFragment;
@@ -241,6 +241,8 @@ public class HomeFragment extends BaseFragment
         menu.clear();
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem action_search = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) action_search.getActionView();
+        searchView.setOnQueryTextListener(this);
         //MenuItemCompat.setShowAsAction(action_search, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
     }
 
@@ -312,5 +314,18 @@ public class HomeFragment extends BaseFragment
                 .add(R.id.fragment_container, profileFragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText)
+    {
+        applyFilter(newText);
+        return true;
     }
 }

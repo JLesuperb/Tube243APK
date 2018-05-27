@@ -3,6 +3,7 @@ package com.tube243.tube243.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
@@ -42,6 +43,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
     {
         void onClickArtist(ViewHolder holder, Artist artist);
     }
+
     private final List<Artist> artistList;
     private OnArtistClickListener onArtistClickListener;
 
@@ -61,12 +63,27 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         holder.tubeCounter.setText(artist.getCounter()+"");
         final AppCompatImageView imageView = holder.artistImageView;
         String onlinePath = Params.SERVER+"/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage();
-        onlinePath = "http://via.placeholder.com/300.png";
-        Picasso.with(context)
+
+        onlinePath = "http://192.168.8.101/training/assets/images/avatars/avatar.jpg";
+        onlinePath = "http://www.tube243.com/views/users/"+artist.getFolder()+"/tbm8cd/img/"+artist.getImage();
+        Picasso.Builder builder = new Picasso.Builder(context);
+        builder.listener(new Picasso.Listener()
+        {
+            @Override
+            public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception)
+            {
+                //exception.printStackTrace();
+                Toast.makeText(context,exception.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(context,exception.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(context,exception.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+        builder.build().load(onlinePath).into(holder.artistImageView);
+        /*Picasso.with(context)
                 .load(onlinePath)
                 .error(R.drawable.ic_artist_cover)
                 .placeholder(R.drawable.ic_artist_cover)
-                .into(holder.artistImageView);
+                .into(holder.artistImageView);*/
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -63,22 +63,20 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         holder.tubeCounter.setText(artist.getCounter()+"");
         final AppCompatImageView imageView = holder.artistImageView;
         String onlinePath = Params.SERVER+"/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage();
-
-        onlinePath = "http://192.168.8.101/training/assets/images/avatars/avatar.jpg";
-        onlinePath = "http://www.tube243.com/views/users/"+artist.getFolder()+"/tbm8cd/img/"+artist.getImage();
+        onlinePath = "http://www.tube243.com/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage();
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.listener(new Picasso.Listener()
         {
             @Override
             public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception)
             {
-                //exception.printStackTrace();
-                Toast.makeText(context,exception.getMessage(),Toast.LENGTH_LONG).show();
-                Toast.makeText(context,exception.getMessage(),Toast.LENGTH_LONG).show();
-                Toast.makeText(context,exception.getMessage(),Toast.LENGTH_LONG).show();
+                exception.printStackTrace();
             }
         });
-        builder.build().load(onlinePath).into(holder.artistImageView);
+        builder.build().load(onlinePath)
+                .error(R.drawable.ic_artist_cover)
+                .placeholder(R.drawable.ic_artist_cover)
+                .into(holder.artistImageView);
         /*Picasso.with(context)
                 .load(onlinePath)
                 .error(R.drawable.ic_artist_cover)

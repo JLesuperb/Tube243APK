@@ -76,6 +76,7 @@ public class ArtistsFragment extends BaseFragment
 
         artistList = new LinkedList<>();
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.getRecycledViewPool().setMaxRecycledViews(0, 0);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(),getGridRow()));
         artistAdapter = new ArtistAdapter(artistList);
         artistAdapter.setContext(getActivity().getApplicationContext());

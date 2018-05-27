@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -103,9 +104,10 @@ public class MediaFragment extends BaseFragment implements MediaPlayer.OnComplet
         toolbar.setTitle(f);
         toolbar.setSubtitle("Artist");
         ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
-        if (((HomeActivity) getActivity()).getSupportActionBar() != null)
+        ActionBar actionBar = ((HomeActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null)
         {
-            ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
         else if(getActivity().getActionBar()!=null)
         {
@@ -466,23 +468,27 @@ public class MediaFragment extends BaseFragment implements MediaPlayer.OnComplet
         }
     }
 
-    private boolean requestAudioFocus()
+    private void requestAudioFocus()
     {
         audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-        int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED)
+        if (audioManager != null)
         {
-            //Focus gained
-            playMedia();
-            return true;
+            int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+            if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED)
+            {
+                //Focus gained
+                playMedia();
+            }
         }
-        //Could not gain focus
-        return false;
     }
 
-    private boolean removeAudioFocus()
+    private void removeAudioFocus()
     {
-        return AudioManager.AUDIOFOCUS_REQUEST_GRANTED == audioManager.abandonAudioFocus(this);
+        if(audioManager!=null)
+        {
+            audioManager.abandonAudioFocus(this);
+        }
+       // AudioManager.AUDIOFOCUS_REQUEST_GRANTED == audioManager.abandonAudioFocus(this);
     }
 
     @Override

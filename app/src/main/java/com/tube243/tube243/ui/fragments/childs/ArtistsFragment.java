@@ -1,6 +1,7 @@
 package com.tube243.tube243.ui.fragments.childs;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import com.tube243.tube243.entities.Artist;
 import com.tube243.tube243.processes.LocalTextTask;
 import com.tube243.tube243.ui.fragments.ArtistFragment;
 import com.tube243.tube243.ui.fragments.BaseFragment;
+import com.tube243.tube243.ui.transitions.ZoomTransition;
 import com.tube243.tube243.utils.Utility;
 
 import java.util.LinkedList;
@@ -188,28 +191,32 @@ public class ArtistsFragment extends BaseFragment
             intent.putExtra("artistBitmap",bytes);
         }
         startActivity(intent);*/
+        if(artist.getImageBitmap()!=null)
+        {
+
+        }
         Fragment fragment = getParent();
         if(fragment!=null)
         {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             ArtistFragment artistFragment = ArtistFragment.getInstance();
 
-            /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             {
                 artistFragment.setSharedElementEnterTransition(new ZoomTransition());
                 artistFragment.setEnterTransition(new Fade());
                 setExitTransition(new Fade());
-                ViewCompat.setTransitionName(holder.artistImageView, "artistImage");
                 artistFragment.setSharedElementReturnTransition(new ZoomTransition());
-            }*/
+            }
 
             artistFragment.setArtist(artist);
             fragmentManager
                     .beginTransaction()
                     .setCustomAnimations(R.animator.fade_in,R.animator.fade_out,
                             R.animator.fade_in,R.animator.fade_out)
-                    //.addSharedElement(holder.artistImageView, "artistImage")
+                    .addSharedElement(holder.artistImageView, "artistImage")
                     .hide(fragment)
+                    .setReorderingAllowed(true)
                     .add(R.id.fragment_container, artistFragment)
                     .addToBackStack(null)
                     .commit();

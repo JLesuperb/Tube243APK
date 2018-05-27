@@ -23,7 +23,7 @@ public class ContactActivity extends AppCompatActivity
         else if (getActionBar() != null)
             getActionBar().setHomeButtonEnabled(true);
 
-        AppCompatTextView phone1 = (AppCompatTextView) findViewById(R.id.phone1);
+        AppCompatTextView phone1 = findViewById(R.id.phone1);
         phone1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,7 +33,7 @@ public class ContactActivity extends AppCompatActivity
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:+243811808471")));
             }
         });
-        AppCompatTextView phone2 = (AppCompatTextView) findViewById(R.id.phone2);
+        AppCompatTextView phone2 = findViewById(R.id.phone2);
         phone2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,7 +43,7 @@ public class ContactActivity extends AppCompatActivity
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:+243891544961")));
             }
         });
-        AppCompatTextView email = (AppCompatTextView)findViewById(R.id.email);
+        AppCompatTextView email = findViewById(R.id.email);
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

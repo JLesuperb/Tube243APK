@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 
 import com.tube243.tube243.R;
 import com.tube243.tube243.adapters.ViewPagerAdapter;
+import com.tube243.tube243.data.LocalData;
 import com.tube243.tube243.ui.activities.HomeActivity;
 import com.tube243.tube243.ui.dialogs.ProfileDialog;
 import com.tube243.tube243.ui.fragments.childs.ArtistsFragment;
@@ -104,11 +105,13 @@ public class HomeFragment extends BaseFragment
         NavigationView navigationView = view.findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        LocalData data = new LocalData(getContext());
+
         View header = navigationView.getHeaderView(0);
         AppCompatTextView user_name = header.findViewById(R.id.user_name);
-        user_name.setText(("FirstName")+" "+("LastName"));
+        user_name.setText(data.getString("firstName")+" "+data.getString("lastName"));
         AppCompatTextView user_phone = header.findViewById(R.id.user_phone);
-        user_phone.setText(("+243 823 841 546"));
+        user_phone.setText(data.getString("phoneNumber"));
         CircleImageView user_image = header.findViewById(R.id.user_image);
         user_image.setOnClickListener(this);
         File folder = Utility.getFolder(".profile");

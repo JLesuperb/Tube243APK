@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
@@ -62,6 +63,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
         holder.artistTitle.setText(artist.getName());
         holder.tubeCounter.setText(artist.getCounter()+"");
         final AppCompatImageView imageView = holder.artistImageView;
+        ViewCompat.setTransitionName(holder.artistImageView, "artistImage"+position);
         String onlinePath = Params.SERVER+"/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage();
         onlinePath = "http://www.tube243.com/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage();
         Picasso.Builder builder = new Picasso.Builder(context);

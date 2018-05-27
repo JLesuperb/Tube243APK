@@ -1,5 +1,6 @@
 package com.tube243.tube243.adapters;
 
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.CardView;
@@ -57,7 +58,7 @@ public class TubeAdapter extends RecyclerView.Adapter<TubeAdapter.ViewHolder> {
                 onTubeClickListener.onClickTube(holder,tube);
             }
         });
-
+        ViewCompat.setTransitionName(holder.tubeImageView, "tubeImage"+position);
     }
 
     @Override

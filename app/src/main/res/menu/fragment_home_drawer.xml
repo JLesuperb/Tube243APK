@@ -36,4 +36,13 @@
             android:icon="@drawable/ic_menu_contact"
             android:title="@string/contact" />
     </group>
+
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Logout" />
+        </menu>
+    </item>
 </menu>

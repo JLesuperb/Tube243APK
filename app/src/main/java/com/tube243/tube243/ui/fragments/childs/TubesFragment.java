@@ -22,6 +22,7 @@ import com.tube243.tube243.entities.Tube;
 import com.tube243.tube243.processes.LocalTextTask;
 import com.tube243.tube243.ui.fragments.BaseFragment;
 import com.tube243.tube243.ui.fragments.MediaFragment;
+import com.tube243.tube243.ui.transitions.ZoomTransition;
 import com.tube243.tube243.utils.Utility;
 import com.tube243.tube243.widgets.AutofitRecyclerView;
 
@@ -230,11 +231,19 @@ public class TubesFragment extends BaseFragment
         {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             MediaFragment mediaFragment = MediaFragment.getInstance();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            {
+                mediaFragment.setSharedElementEnterTransition(new ZoomTransition());
+                mediaFragment.setEnterTransition(new Fade());
+                setExitTransition(new Fade());
+                mediaFragment.setSharedElementReturnTransition(new ZoomTransition());
+            }
             mediaFragment.setTube(tube);
             fragmentManager
                     .beginTransaction()
                     .setCustomAnimations(R.animator.fade_in,R.animator.fade_out,
                             R.animator.fade_in,R.animator.fade_out)
+                    .addSharedElement(holder.tubeImageView, "tubeImage")
                     .hide(fragment)
                     .add(R.id.fragment_container, mediaFragment)
                     .addToBackStack(null)

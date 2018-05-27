@@ -3,7 +3,6 @@ package com.tube243.tube243.ui.fragments.childs;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -123,6 +122,7 @@ public class ArtistsFragment extends BaseFragment
             @Override
             public void onResult(Map<String, Object> result)
             {
+                db.clearArtists();
                 if(result.containsKey("isDone") && (Boolean) result.get("isDone"))
                 {
                     List<Map<String,Object>> maps = (List<Map<String,Object>>) result.get("data");
@@ -176,6 +176,11 @@ public class ArtistsFragment extends BaseFragment
     {
         artistList.addAll(db.getAllArtists());
         artistAdapter.notifyDataSetChanged();
+        if(getView()!=null)
+        {
+            SwipeRefreshLayout swipeContainer = getView().findViewById(R.id.swipeContainer);
+            swipeContainer.setRefreshing(false);
+        }
     }
 
     @Override
@@ -225,7 +230,7 @@ public class ArtistsFragment extends BaseFragment
     @Override
     public void onRefresh()
     {
-
+        loadDataFromServer();
     }
 
     public void applyFilter(String filterString)

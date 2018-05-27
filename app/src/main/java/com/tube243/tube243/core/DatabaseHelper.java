@@ -235,4 +235,18 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 new String[]{String.valueOf(artist.getId())});
         db.close();
     }
+
+    public void clearArtists()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM "+ Artist.TABLE_NAME);
+        db.close();
+    }
+
+    public void clearTubes()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM "+ Tube.TABLE_NAME);
+        db.close();
+    }
 }

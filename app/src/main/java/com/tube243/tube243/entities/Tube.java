@@ -1,10 +1,12 @@
 package com.tube243.tube243.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by JonathanLesuperb on 4/23/2017.
  */
 
-public class Tube
+public class Tube implements Serializable
 {
     public static final String TABLE_NAME = "tubes";
 

@@ -1,10 +1,12 @@
 package com.tube243.tube243.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by JonathanLesuperb on 5/15/2017.
  */
 
-public class News
+public class News implements Serializable
 {
     private Long newsId;
     private Long artistId;

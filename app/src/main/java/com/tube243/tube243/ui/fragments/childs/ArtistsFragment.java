@@ -1,6 +1,7 @@
 package com.tube243.tube243.ui.fragments.childs;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ import com.tube243.tube243.ui.fragments.BaseFragment;
 import com.tube243.tube243.ui.transitions.ZoomTransition;
 import com.tube243.tube243.utils.Utility;
 
+import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -191,15 +193,21 @@ public class ArtistsFragment extends BaseFragment
             intent.putExtra("artistBitmap",bytes);
         }
         startActivity(intent);*/
-        if(artist.getImageBitmap()!=null)
-        {
-
-        }
         Fragment fragment = getParent();
         if(fragment!=null)
         {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             ArtistFragment artistFragment = ArtistFragment.getInstance();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("artist",artist);
+            if(artist.getImageBitmap()!=null)
+            {
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                artist.getImageBitmap().compress(Bitmap.CompressFormat.PNG,100,stream);
+                byte[] bytes = stream.toByteArray();
+                bundle.putByteArray("artistBitmap",bytes);
+            }
+            artistFragment.setArguments(bundle);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             {

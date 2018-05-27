@@ -1,10 +1,12 @@
 package com.tube243.tube243.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by JonathanLesuperb on 4/23/2017.
  */
 
-public class Studio
+public class Studio implements Serializable
 {
     private Long id;
     private String name;

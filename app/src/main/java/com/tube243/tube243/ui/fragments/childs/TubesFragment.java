@@ -244,6 +244,7 @@ public class TubesFragment extends BaseFragment
                     .setCustomAnimations(R.animator.fade_in,R.animator.fade_out,
                             R.animator.fade_in,R.animator.fade_out)
                     .addSharedElement(holder.tubeImageView, "tubeImage")
+                    .setReorderingAllowed(true)
                     .hide(fragment)
                     .add(R.id.fragment_container, mediaFragment)
                     .addToBackStack(null)

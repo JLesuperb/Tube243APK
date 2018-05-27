@@ -1,7 +1,11 @@
 package com.tube243.tube243.ui.fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -9,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tube243.tube243.R;
+import com.tube243.tube243.data.Params;
 import com.tube243.tube243.entities.Artist;
+import com.tube243.tube243.processes.LocalImageTask;
 import com.tube243.tube243.ui.activities.HomeActivity;
 
 /**
@@ -64,14 +70,33 @@ public class ArtistFragment extends BaseFragment
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         toolbar.setTitle("Artist");
         ((HomeActivity)getActivity()).setSupportActionBar(toolbar);
-        if (((HomeActivity) getActivity()).getSupportActionBar() != null)
+        ActionBar actionBar = ((HomeActivity) getActivity()).getSupportActionBar();
+        if (actionBar != null)
         {
-            ((HomeActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
         else if(getActivity().getActionBar()!=null)
         {
             getActivity().getActionBar().setHomeButtonEnabled(true);
         }
+
+        AppCompatImageView artistImageView = view.findViewById(R.id.artistImageView);
+        Bundle bundle = this.getArguments();
+        if(bundle != null)
+        {
+            byte[] bytes = bundle.getByteArray("artistBitmap");
+            if (bytes != null)
+            {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                artistImageView.setImageBitmap(bitmap);
+            }
+        }
+        /*else
+        {
+            LocalImageTask imageTask = new LocalImageTask(artistImageView);
+            imageTask.setUrlString("http://www.tube243.com/views/users/tbm/"+artist.getFolder()+"/img/"+artist.getImage());
+            imageTask.execute("");
+        }*/
     }
 
     @Override

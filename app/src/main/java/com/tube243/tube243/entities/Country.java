@@ -1,10 +1,12 @@
 package com.tube243.tube243.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by JonathanLesuperb on 4/20/2017.
  */
 
-public class Country
+public class Country implements Serializable
 {
     private final Long id;
     private final String name;

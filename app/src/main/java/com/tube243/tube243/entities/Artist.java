@@ -2,11 +2,13 @@ package com.tube243.tube243.entities;
 
 import android.graphics.Bitmap;
 
+import java.io.Serializable;
+
 /**
  * Created by JonathanLesuperb on 4/23/2017.
  */
 
-public class Artist
+public class Artist implements Serializable
 {
     public static final String TABLE_NAME = "artists";
 

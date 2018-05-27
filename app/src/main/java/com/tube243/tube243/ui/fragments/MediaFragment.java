@@ -470,14 +470,17 @@ public class MediaFragment extends BaseFragment implements MediaPlayer.OnComplet
 
     private void requestAudioFocus()
     {
-        audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-        if (audioManager != null)
+        if(getContext()!=null)
         {
-            int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-            if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED)
+            audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+            if (audioManager != null)
             {
-                //Focus gained
-                playMedia();
+                int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED)
+                {
+                    //Focus gained
+                    playMedia();
+                }
             }
         }
     }

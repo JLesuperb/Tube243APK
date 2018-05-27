@@ -85,6 +85,11 @@ public class ArtistFragment extends BaseFragment
         if(bundle != null)
         {
             byte[] bytes = bundle.getByteArray("artistBitmap");
+            Artist artist = (Artist) bundle.getSerializable("artist");
+            if(artist!=null)
+            {
+                toolbar.setTitle(artist.getName());
+            }
             if (bytes != null)
             {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);

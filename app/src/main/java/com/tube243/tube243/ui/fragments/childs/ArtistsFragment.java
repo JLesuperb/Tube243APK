@@ -2,6 +2,8 @@ package com.tube243.tube243.ui.fragments.childs;
 
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -179,31 +181,20 @@ public class ArtistsFragment extends BaseFragment
     @Override
     public void onClickArtist(ArtistAdapter.ViewHolder holder, Artist artist)
     {
-        /*Intent intent = new Intent(getActivity().getApplicationContext(),ArtistDetailActivity.class);
-        intent.putExtra("artistId",artist.getId());
-        intent.putExtra("artistName",artist.getName());
-        intent.putExtra("artistFolder",artist.getFolder());
-        intent.putExtra("artistImage",artist.getImage());
-        intent.putExtra("artistCounter",artist.getCounter());
-        if(artist.getImageBitmap()!=null)
-        {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            artist.getImageBitmap().compress(Bitmap.CompressFormat.PNG,100,stream);
-            byte[] bytes = stream.toByteArray();
-            intent.putExtra("artistBitmap",bytes);
-        }
-        startActivity(intent);*/
         Fragment fragment = getParent();
         if(fragment!=null)
         {
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             ArtistFragment artistFragment = ArtistFragment.getInstance();
             Bundle bundle = new Bundle();
+
             bundle.putSerializable("artist",artist);
-            if(artist.getImageBitmap()!=null)
+            BitmapDrawable bitmapDrawable = (BitmapDrawable)holder.artistImageView.getDrawable();
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+            if(bitmap!=null)
             {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                artist.getImageBitmap().compress(Bitmap.CompressFormat.PNG,100,stream);
+                bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
                 byte[] bytes = stream.toByteArray();
                 bundle.putByteArray("artistBitmap",bytes);
             }

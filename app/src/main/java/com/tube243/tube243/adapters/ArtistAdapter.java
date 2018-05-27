@@ -90,7 +90,6 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ViewHolder
             public void onClick(View view) {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable)imageView.getDrawable();
                 Bitmap bitmap = bitmapDrawable.getBitmap();
-                artist.setImageBitmap(bitmap);
                 onArtistClickListener.onClickArtist(holder,artist);
             }
         });

@@ -1,7 +1,5 @@
 package com.tube243.tube243.entities;
 
-import android.graphics.Bitmap;
-
 import java.io.Serializable;
 
 /**
@@ -35,7 +33,6 @@ public class Artist implements Serializable
     private String folder;
     private String image;
     private Integer counter;
-    private Bitmap imageBitmap;
 
     public Artist()
     {
@@ -79,14 +76,6 @@ public class Artist implements Serializable
 
     public String getImage() {
         return image;
-    }
-
-    public void setImageBitmap(Bitmap imageBitmap) {
-        this.imageBitmap = imageBitmap;
-    }
-
-    public Bitmap getImageBitmap() {
-        return imageBitmap;
     }
 
     public void setId(long id) {

@@ -1,7 +1,6 @@
 package com.tube243.tube243.ui.fragments;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -92,16 +91,15 @@ public class ArtistFragment extends BaseFragment implements ArtistTubeAdapter.On
         Bundle bundle = this.getArguments();
         if(bundle != null)
         {
-            byte[] bytes = bundle.getByteArray("artistBitmap");
             Artist artist = (Artist) bundle.getSerializable("artist");
             if(artist!=null)
             {
                 toolbar.setTitle(artist.getName());
                 loadData(artist.getId());
             }
-            if (bytes != null)
+            Bitmap bitmap = bundle.getParcelable("bitmap");
+            if (bitmap != null)
             {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
                 artistImageView.setImageBitmap(bitmap);
             }
         }

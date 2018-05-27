@@ -197,10 +197,11 @@ public class ArtistsFragment extends BaseFragment
             Bitmap bitmap = bitmapDrawable.getBitmap();
             if(bitmap!=null)
             {
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bundle.putParcelable("bitmap",bitmap);
+               /* ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
                 byte[] bytes = stream.toByteArray();
-                bundle.putByteArray("artistBitmap",bytes);
+                bundle.putByteArray("artistBitmap",bytes);*/
             }
             artistFragment.setArguments(bundle);
 

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.tube243.tube243.R;
 import com.tube243.tube243.adapters.ArtistTubeAdapter;
@@ -95,7 +96,7 @@ public class ArtistFragment extends BaseFragment implements ArtistTubeAdapter.On
             if(artist!=null)
             {
                 toolbar.setTitle(artist.getName());
-                loadData(artist.getId());
+                loadData(artist.getArtistId());
             }
             Bitmap bitmap = bundle.getParcelable("bitmap");
             if (bitmap != null)
@@ -125,7 +126,7 @@ public class ArtistFragment extends BaseFragment implements ArtistTubeAdapter.On
         }
     }
 
-    private void loadData(final Long artistId)
+    private void loadData(final Integer artistId)
     {
         LocalTextTask textTask = new LocalTextTask();
         textTask.setUrlString(Params.SERVER_HOST+"?controller=utilities&method=artist-tubes&artistId="+artistId+"&userId="+localData.getLong("userId"));

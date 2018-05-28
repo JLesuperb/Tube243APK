@@ -1,5 +1,7 @@
 package com.tube243.tube243.ui.fragments;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -242,6 +244,7 @@ public class HomeFragment extends BaseFragment
         inflater.inflate(R.menu.search_menu, menu);
         MenuItem action_search = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) action_search.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
         searchView.setOnQueryTextListener(this);
         //MenuItemCompat.setShowAsAction(action_search, MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
     }

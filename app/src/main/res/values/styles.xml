@@ -93,4 +93,12 @@
         <item name="android:windowEnterAnimation">@anim/zoom_in</item>
         <item name="android:windowExitAnimation">@anim/zoom_out</item>
     </style>
+
+    <!-- Expanded Title BackGround -->
+    <style name="ExpandedTitleTextAppearance">
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowRadius">8</item>
+        <item name="android:shadowColor">@android:color/black</item>
+    </style>
 </resources>

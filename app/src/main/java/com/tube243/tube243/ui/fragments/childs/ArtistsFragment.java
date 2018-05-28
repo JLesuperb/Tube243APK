@@ -83,6 +83,7 @@ public class ArtistsFragment extends BaseFragment
         artistList = new LinkedList<>();
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.getRecycledViewPool().setMaxRecycledViews(0, 0);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity().getApplicationContext(),getGridRow()));
         artistAdapter = new ArtistAdapter(artistList);
         artistAdapter.setContext(getActivity().getApplicationContext());
@@ -198,10 +199,6 @@ public class ArtistsFragment extends BaseFragment
             if(bitmap!=null)
             {
                 bundle.putParcelable("bitmap",bitmap);
-               /* ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
-                byte[] bytes = stream.toByteArray();
-                bundle.putByteArray("artistBitmap",bytes);*/
             }
             artistFragment.setArguments(bundle);
 
@@ -232,7 +229,7 @@ public class ArtistsFragment extends BaseFragment
 
     public void applyFilter(String filterString)
     {
-        artistAdapter.setFilterPattern(filterString);
+        artistAdapter.getFilter().filter(filterString);
         artistAdapter.notifyDataSetChanged();
     }
 }

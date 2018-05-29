@@ -23,7 +23,6 @@ import com.tube243.tube243.processes.LocalTextTask;
 import com.tube243.tube243.transitions.DetailsTransition;
 import com.tube243.tube243.ui.fragments.BaseFragment;
 import com.tube243.tube243.ui.fragments.MediaFragment;
-import com.tube243.tube243.ui.transitions.ZoomTransition;
 import com.tube243.tube243.utils.Utility;
 import com.tube243.tube243.widgets.AutofitRecyclerView;
 
@@ -91,7 +90,7 @@ public class TubesFragment extends BaseFragment
             });
         }
 
-        tubeAdapter = new TubeAdapter(tubeList);
+        tubeAdapter = new TubeAdapter(tubeList,getContext());
         recyclerView.setAdapter(tubeAdapter);
         tubeAdapter.setOnTubeClickListener(this);
 

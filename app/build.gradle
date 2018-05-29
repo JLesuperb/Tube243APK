@@ -38,4 +38,5 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.5.+'
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'org.jetbrains:annotations-java5:15.0'
 }

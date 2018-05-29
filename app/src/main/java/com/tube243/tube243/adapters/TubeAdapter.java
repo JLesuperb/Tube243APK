@@ -1,5 +1,6 @@
 package com.tube243.tube243.adapters;
 
+import android.content.Context;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -8,9 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 
 import com.tube243.tube243.R;
 import com.tube243.tube243.entities.Tube;
+import com.tube243.tube243.utils.Utils;
 
 import java.util.List;
 
@@ -21,10 +24,12 @@ import java.util.List;
 public class TubeAdapter extends RecyclerView.Adapter<TubeAdapter.ViewHolder> {
 
     private List<Tube> tubeList;
+    private Context context;
     private OnTubeClickListener onTubeClickListener;
 
-    public TubeAdapter(List<Tube> tubeList){
+    public TubeAdapter(List<Tube> tubeList, Context context){
         this.tubeList=tubeList;
+        this.context=context;
     }
 
     public void setOnTubeClickListener(OnTubeClickListener onTubeClickListener) {
@@ -48,7 +53,9 @@ public class TubeAdapter extends RecyclerView.Adapter<TubeAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(final TubeAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final TubeAdapter.ViewHolder holder, int position)
+    {
+        runEnterAnimation(holder.itemView);
         final Tube tube = tubeList.get(position);
         holder.tubeTitle.setText(tubeList.get(position).getName().replace(".mp3",""));
         holder.viewCounter.setText(tubeList.get(position).getCounter()+"");
@@ -59,6 +66,15 @@ public class TubeAdapter extends RecyclerView.Adapter<TubeAdapter.ViewHolder> {
             }
         });
         ViewCompat.setTransitionName(holder.tubeImageView, "tubeImage"+position);
+    }
+
+    private void runEnterAnimation(View view) {
+        view.setTranslationY(Utils.getScreenHeight(context));
+        view.animate()
+                .translationY(0)
+                .setInterpolator(new DecelerateInterpolator(3.f))
+                .setDuration(700)
+                .start();
     }
 
     @Override
